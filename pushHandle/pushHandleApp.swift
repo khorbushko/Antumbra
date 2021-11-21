@@ -12,7 +12,7 @@ struct pushHandleApp: App {
   var body: some Scene {
     WindowGroup {
       MainView()
-        .frame(width: 670, height: 550)
+        .frame(width: 712, height: 592)
     }
   }
 }

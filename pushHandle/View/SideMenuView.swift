@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 
-final class Page: Identifiable, Equatable, Hashable {
+final class Page: Identifiable, Equatable, Hashable, ObservableObject {
   var session: P8SessionData?
   var id = UUID()
-  var name: String
+  @Published var name: String
+  @Published var selectedIndex: Int = 0
 
   static func == (lhs: Page, rhs: Page) -> Bool {
     lhs.id == rhs.id
@@ -28,15 +29,25 @@ final class Page: Identifiable, Equatable, Hashable {
   }
 }
 
-struct SideMenuView: View {
-  private var pages: [Page] = []
-  @State private var selectedPage: Page? = nil
+final class SideMenuViewModel: ObservableObject {
+  @Published var pages: [Page] = []
+  @Published var selectedPage: Page?
 
   init() {
     pages = [
-      .init(name: "P8")
+      .init(name: "session-1")
     ]
+
+    selectedPage = pages.first
   }
+
+  func addNewSession() {
+    pages.append(.init(name: "session-\(pages.count+1)"))
+  }
+}
+
+struct SideMenuView: View {
+  @StateObject private var viewModel: SideMenuViewModel = .init()
 
   var body: some View {
     VStack {
@@ -47,19 +58,76 @@ struct SideMenuView: View {
       }
       .padding(.horizontal, 8)
 
-      List(pages) { page in
+      List(viewModel.pages) { page in
         NavigationLink(
-          destination: P8ContentView(sessionData: page.session),
+          destination: content(page),
           tag: page,
-          selection: $selectedPage
+          selection: $viewModel.selectedPage
         ) {
-          Text(page.name)
+          TextField("session", text: .init(get: { page.name }, set: { page.name = $0 } ))
         }
       }
-      .onAppear {
-        selectedPage = pages.first
+
+      Divider()
+
+      VStack {
+        HStack {
+          Spacer()
+          Button {
+            viewModel.addNewSession()
+          } label: {
+            Image(systemName: "plus.app")
+              .resizable()
+              .frame(width: 16, height: 16)
+          }
+          .buttonStyle(.plain)
+          .padding(4)
+        }
+        Spacer()
       }
+      .frame(height: 22)
     }
+  }
+
+  @ViewBuilder
+  private func content(_ page: Page) -> some View {
+    PushTabView(page: page)
+      .padding()
   }
 }
 
+struct PushTabView: View {
+  @State var page: Page
+
+  var body: some View {
+    TabView(selection: $page.selectedIndex) {
+      P8ContentView(sessionData: page.session)
+      .tabItem {
+        HStack {
+          Text("p8")
+        }
+        .frame(width: 100)
+      }
+      .tag(0)
+
+      HStack {
+        Spacer()
+        VStack {
+          Spacer()
+          Text("p12")
+          Spacer()
+        }
+        Spacer()
+      }
+      .frame(width: 500, height: 500)
+      .padding()
+      .tabItem {
+        HStack {
+          Text("p12")
+        }
+        .frame(width: 100)
+      }
+      .tag(1)
+    }
+  }
+}

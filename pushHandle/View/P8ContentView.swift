@@ -241,7 +241,6 @@ struct P8ContentView: View {
         viewModel.error = nil
       }
     }
-    .navigationTitle("P8")
   }
 
   // MARK: - Private
