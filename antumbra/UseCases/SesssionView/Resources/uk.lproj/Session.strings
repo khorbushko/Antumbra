@@ -1,0 +1,68 @@
+"session.details.defaultName" = "сесія";
+"session.details.action.send" = "Надіслати";
+"session.details.pane.auth.message.p8" = "або перетягніть файл-ключ *.p8 сюди";
+"session.details.pane.auth.message.p12" = "або перетягніть сертифікат *.p12 сюди";
+"session.details.pane.auth.action.p8.selectFile" = "Виберіть файл, *.p8";
+"session.details.pane.auth.action.p12.selectFile" = "Виберіть файл, *.p12";
+"session.sections.auth" = "АВТОРИЗАЦІЯ";
+"session.sections.destination" = "ОТРИМУВАЧ";
+"session.sections.header" = "ЗАГОЛОВОК";
+"session.sections.body" = "ТІЛО";
+"session.sections.env" = "ОТОЧЕННЯ";
+
+"popoverView.message.obtain" = "Детальніше ";
+"popoverView.message.obtain.suffix" = "тут: ";
+
+"session.pushData.pushPriority.low" = "низький (збереження енергії)";
+"session.pushData.pushPriority.normal" = "нормальний";
+"session.pushData.pushPriority.critical" = "критичний";
+
+"session.pushData.pushType.alert" = "alert";
+"session.pushData.pushType.background" = "background";
+"session.pushData.pushType.location" = "location";
+"session.pushData.pushType.voip" = "voip";
+"session.pushData.pushType.complication" = "complication";
+"session.pushData.pushType.fileprovider" = "fileprovider";
+"session.pushData.pushType.mdm" = "mdm";
+
+"session.pushData.environment.sandbox" = "sandbox";
+"session.pushData.environment.production" = "production";
+
+"pushPredefinedType.simple" = "стандартний";
+"pushPredefinedType.localized" = "локалізований";
+"pushPredefinedType.customData" = "власні дані";
+"pushPredefinedType.alert" = "alert";
+"pushPredefinedType.badge" = "badge";
+"pushPredefinedType.sound" = "sound";
+"pushPredefinedType.backgroundUpdate" = "backgroundUpdate";
+"pushPredefinedType.actions" = "з діями";
+"pushPredefinedType.critical" = "critical";
+"pushPredefinedType.silent" = "silent";
+"pushPredefinedType.mutableContent" = "mutableContent";
+
+"session.historyView.noRequestsMesage" = "Дані відсутні...";
+
+"sessionState.HistoryTab.request" = "Запит";
+"sessionState.HistoryTab.response" = "Відповідь";
+"sessionState.HistoryTab.general" = "Загальне";
+
+"historyView.general.endpoint" = "Адреса";
+"historyView.general.deviceToken" = "Токен пристрою";
+"historyView.general.APNSId" = "APNS ідентифікатор";
+"historyView.general.status" = "Статус";
+"historyView.general.status.success" = "Успішно";
+"historyView.general.status.fail" = "Провал";
+
+"historyView.request.endpoint" = "Адреса";
+"historyView.request.url" = "URL";
+"historyView.request.bundleId" = "Bundle Id";
+"historyView.request.headers" = "Headers";
+"historyView.request.payload" = "Payload";
+"historyView.request.curl" = "Curl";
+
+"historyView.response.statusCode" = "Статус код";
+"historyView.response.headers" = "Headers";
+"historyView.response.data" = "Дані";
+"historyView.response.failure.reason" = "Причина помилки";
+
+"session.certTab.expires" = "Дійсний до";

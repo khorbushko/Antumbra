@@ -1,51 +1,74 @@
-# pushHandle
-OS X app for sending push with Apple Push Notification service (APNs)
+
+
+
+<p align="center">
+  <a href="">
+    <img alt="Logo" src="blob/antumbra.svg" width="500px">
+  </a>
+</p>
+
+<br>
 
 <p align="left">
   <img alt="Swift" src="https://img.shields.io/badge/Swift-5+-orange.svg">
   <img alt="ICONKit-license" src="https://img.shields.io/badge/license-MIT-green">
-  </a>
-    <a href="https://github.com/icon-project/ICONKit" target="_blank">
-    <img alt="type" src="https://img.shields.io/badge/status-inDevelopment-blue">
-  </a>
+  <img alt="verions" src="https://img.shields.io/badge/version-1.0.1-yellow">
 </p>
 
+🇺🇦
+
+
+OS X app for sending push with Apple Push Notification service (APNs) over HTTP/2 API.
+
+- [About](##About)
+- [Quick guide](##APNS guide)
+- [License](##License)
+- [Thanks to](##Thanks to)
+- [Contact](##contact)
 
 ## About
 
 This app was created just to allow painless testing of push notifications.
 
-> This app is in progress and for now have just a minimal implementation for testing with p8 key
+It's completely open source and any improvements are welcome.
 
-![screenshot](blob/screenshot.png)
+![screenshot](blob/app_scr_1.png)
 
-> The work in progress...
+> The whole story with app started quite ago. [Here](https://khorbushko.github.io/article/2021/11/13/push-routine.html) my blog-post about first attemp. On this blog I will try to cover the most interesting features and functionality related to the app soon.
 
 ## Features
 
-[x] sandbox/production mode
+App supports all basic ways of sending push notifications. 
 
-[x] customizable payload
+Main features are:
+	
+- [x] Auth with p8 key
+- [x] Auth with p12 cert
+- [x] Auth with keychain
+- [x] Custom push paylod
+- [x] Payload JSON validation
+- [x] Predefined payloads
+- [x] Full customization of push
+- [x] Build in hints
+- [x] Multiply sessions
+- [x] Session persistants
+- [x] History with detailed info
+- [x] Inspection of request with option to use curl for p8 auth
+- [x] Rich failure description
+- [x] Light/Dark mode
+- [x] Written in Swift
 
-[x] report errors and steps done under the hood
+In progress:
 
-[x] .p8 support
+- [] Create reusable sp for APNS
+- [] Support generate terminal command
+- [] Live push preview
 
-[ ] payload syntax check
-
-[ ] .p12 support
-
-[ ] export request to curl
-
-[ ] session store (for later reuse)
-
-## Small guide
-
-### get device apns token
+## Quick guide
 
 Configre apple developer account:
 
-* generate certificate sing request on mac (Keychain->File->Request certificate sign identity)
+* generate certificate sign request on mac (Keychain->File->Request certificate sign identity)
 
 ![](blob/setup/sign+step1.png)
 ![](blob/setup/sign+step2.png)
@@ -54,11 +77,11 @@ Configre apple developer account:
 * Go to the Provisioning Portal or Certificates, Identifiers & Profiles
 * Create app identifier
 * Add certificate for push (sandbox and/or production)
-* Create p8 Key at Apple's Dev Center to use the app
+* Create p8 Key at Apple's Dev Center to use the app (optional)
 
 In the project u need to allow required capabilities:
 
-![](blob/projectSetup.png)
+![](blob/capabilities.png)
 
 Then in u'r project `App`:
 
@@ -187,7 +210,12 @@ More info about APNS [here](https://developer.apple.com/documentation/usernotifi
 
 ## Thanks to
 
-* [ethanhuang13](https://github.com/ethanhuang13/CupertinoJWT)
+* [ethanhuang13](https://github.com/ethanhuang13/CupertinoJWT) for Cuppertino JWT
+* [dwarvesf](https://github.com/dwarvesf/CodeViewer) for CodeViewer
+* [TCA](https://www.pointfree.co) for architecture
+* [Lottie](https://lottiefiles.com) for animation
+* [omnyway133](https://onmyway133.com/pushhero/) for idea
+
 
 ## Contact
 

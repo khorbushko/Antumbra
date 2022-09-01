@@ -1,0 +1,99 @@
+"popover.placeholder.teamId" = "TEAM ID";
+"popover.placeholder.keyId" = "KEY ID";
+"popover.placeholder.bundleId" = "BUNDLE ID";
+"popover.placeholder.destination" = "APNS DEVICE TOKEN";
+"popover.placeholder.notificationId" = "NOTIFICATION ID";
+"popover.placeholder.expiration" = "EXPIRATION, IN SECONDS";
+"popover.placeholder.collapseId" = "COLLAPSE ID";
+"popover.placeholder.passphrase" = "PASSPHRASE";
+
+"popover.title.teamId" = "Team Id";
+"popover.title.keyId" = "Key Id";
+"popover.title.bundleId" = "Bundle Id";
+"popover.title.destination" = "APNS Device Token";
+"popover.title.environment" = "APNS Server";
+"popover.title.notificationId" = "Notification Id";
+"popover.title.expiration" = "Expiration";
+"popover.title.priority" = "Priority";
+"popover.title.collapseId" = "Collapse Id";
+"popover.title.kind" = "Push type";
+"popover.title.payload" = "Payload";
+"popover.title.passphrase" = "Passphrase";
+
+"popover.description.teamId" = "10-character value - identifier for your team.";
+"popover.description.keyId" = "10-character key identifier of your p8 file. A string that identifies the key used to generate the signature.";
+"popover.description.bundleId" = "A bundle ID or bundle identifier uniquely identifies an application in Apple's ecosystem.";
+"popover.description.destination" = "APNS token of the device
+
+For the <device-token> parameter, specify the hexadecimal bytes of the device token for the target device.
+
+Example: 9f522464238edf9b847abe61c42eb5e1baf237156c8594ea56cc326372bb204f";
+"popover.description.environment" = "To establish a connection with the appropriate APNs server and send push, we can choose a server depending on needed environment:
+
+- Development server: api.development.push.apple.com:443
+
+- Production server: api.push.apple.com:443";
+"popover.description.notificationId" = "A canonical UUID that identifies the notification. If there is an error sending the notification, APNs uses this value to identify the notification to your server.
+
+The canonical form is 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens in the form 8-4-4-4-12. An example UUID is as follows: 123e4567-e89b-12d3-a456-42665544000
+
+If you omit this header, a new UUID is created by APNs and returned in the response.";
+"popover.description.expiration" = "A UNIX epoch date expressed in seconds (UTC). This header identifies the date when the notification is no longer valid and can be discarded.
+
+If this value is nonzero, APNs stores the notification and tries to deliver it at least once, repeating the attempt as needed if it is unable to deliver the notification the first time.
+
+If the value is 0, APNs treats the notification as if it expires immediately and does not store the notification or attempt to redeliver it.";
+"popover.description.priority" = "The priority of the notification. Specify one of the following values:
+
+- 10–Send the push message immediately. Notifications with this priority must trigger an alert, sound, or badge on the target device. It is an error to use this priority for a push notification that contains only the content-available key.
+
+- 5—Send the push message at a time that takes into account power considerations for the device. Notifications with this priority might be grouped and delivered in bursts. They are throttled, and in some cases are not delivered.
+
+- 1-Send the push message in accordance to prioritize the device’s power considerations over all other factors for delivery, and prevent awakening the device.
+
+If you omit this header, the APNs server sets the priority to 10.";
+"popover.description.collapseId" = "Multiple notifications with the same collapse identifier are displayed to the user as a single notification.
+
+An identifier you use to coalesce multiple notifications into a single notification for the user. Typically, each notification request causes a new notification to be displayed on the user’s device. When sending the same notification more than once, use the same value in this header to coalesce the requests.
+
+*The value of this key must not exceed 64 bytes.";
+"popover.description.kind" = "The apns-push-type header field has the following valid values. The descriptions below describe when and how to use these values.
+
+- alert: Use the alert push type for notifications that trigger a user interaction—for example, an alert, badge, or sound. If you set this push type, the apns-topic header field must use your app’s bundle ID as the topic. For more information, see Generating a remote notification.
+If the notification requires immediate action from the user, set notification priority to 10; otherwise use 5.
+The alert push type is required on watchOS 6 and later. It is recommended on macOS, iOS, tvOS, and iPadOS.
+
+- background: Use the background push type for notifications that deliver content in the background, and don’t trigger any user interactions. If you set this push type, the apns-topic header field must use your app’s bundle ID as the topic. Always use priority 5. Using priority 10 is an error. For more information, see Pushing Background Updates to Your App.
+The background push type is required on watchOS 6 and later. It is recommended on macOS, iOS, tvOS, and iPadOS.
+
+- location: Use the location push type for notifications that request a user’s location. If you set this push type, the apns-topic header field must use your app’s bundle ID with .location-query appended to the end. For more information, see Creating a Location Push Service Extension.
+The location push type is recommended for iOS and iPadOS. It isn’t available on macOS, tvOS, and watchOS.
+If the location query requires an immediate response from the Location Push Service Extension, set notification apns-priority to 10; otherwise, use 5.
+The location push type supports only token-based authentication.
+
+- voip: Use the voip push type for notifications that provide information about an incoming Voice-over-IP (VoIP) call. For more information, see Responding to VoIP Notifications from PushKit.
+If you set this push type, the apns-topic header field must use your app’s bundle ID with .voip appended to the end. If you’re using certificate-based authentication, you must also register the certificate for VoIP services. The topic is then part of the 1.2.840.113635.100.6.3.4 or 1.2.840.113635.100.6.3.6 extension.
+The voip push type is not available on watchOS. It is recommended on macOS, iOS, tvOS, and iPadOS.
+
+- complication :Use the complication push type for notifications that contain update information for a watchOS app’s complications. For more information, see Keeping Your Complications Up to Date.
+If you set this push type, the apns-topic header field must use your app’s bundle ID with .complication appended to the end. If you’re using certificate-based authentication, you must also register the certificate for WatchKit services. The topic is then part of the 1.2.840.113635.100.6.3.6 extension.
+The complication push type is recommended for watchOS and iOS. It is not available on macOS, tvOS, and iPadOS.
+
+- fileprovider: Use the fileprovider push type to signal changes to a File Provider extension. If you set this push type, the apns-topic header field must use your app’s bundle ID with .pushkit.fileprovider appended to the end. For more information, see Using Push Notifications to Signal Changes.
+The fileprovider push type is not available on watchOS. It is recommended on macOS, iOS, tvOS, and iPadOS.
+
+- mdm: Use the mdm push type for notifications that tell managed devices to contact the MDM server. If you set this push type, you must use the topic from the UID attribute in the subject of your MDM push certificate. For more information, see Device Management.
+The mdm push type is not available on watchOS. It is recommended on macOS, iOS, tvOS, and iPadOS.";
+"popover.description.payload" = "For each notification, you provide a payload with app-specific information and details about how to deliver the notification to the user. The payload is a JSON dictionary object (as defined by RFC 4627) that you create on your server. The JSON dictionary object must contain an aps key, the value of which is a dictionary containing data used by the system to deliver the notification. The main contents of the aps dictionary determine whether the system does any of the following:
+
+- Displays an alert message to the user
+- Applies a badge to the app’s icon
+- Plays a sound
+- Delivers the notification silently
+
+In addition to the aps dictionary, the JSON dictionary can include custom keys and values with your app-specific content. Custom values must use the JSON structure and use only primitive types such as dictionary (object), array, string, number, and Boolean. Do not include customer information or any sensitive data in your payload unless that data is encrypted or useless outside of the context of your app. For example, you could include a conversation identifier that your an instant messaging app could then use to locate the corresponding user conversation. The data in a notification should never be destructive—that is, your app should never use a notification to delete data on the user’s device.
+
+When using the HTTP/2 based APNS provider API, the maximum size for your JSON dictionary is 4KB. For legacy APIs, the payload size is smaller.";
+"popover.description.passphrase" = "Password used for protection selection p12 certificate.
+
+The passphrase is just a key/password characters used to encrypt the private key file that contains the RSA key, using a symmetric cipher (usually DES or 3DES).";

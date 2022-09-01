@@ -1,0 +1,68 @@
+"session.details.defaultName" = "session";
+"session.details.action.send" = "Send";
+"session.details.pane.auth.message.p8" = "or drag and drop *.p8 key here";
+"session.details.pane.auth.message.p12" = "or drag and drop *.p12 file here";
+"session.details.pane.auth.action.p8.selectFile" = "Select file, *.p8";
+"session.details.pane.auth.action.p12.selectFile" = "Select file, *.p12";
+"session.sections.auth" = "AUTHENTIFICATION";
+"session.sections.destination" = "DESTINATION";
+"session.sections.header" = "HEADER";
+"session.sections.body" = "BODY";
+"session.sections.env" = "ENVIRONMENT";
+
+"popoverView.message.obtain" = "You can obtains this info ";
+"popoverView.message.obtain.suffix" = "here: ";
+
+"session.pushData.pushPriority.low" = "low (power-saver)";
+"session.pushData.pushPriority.normal" = "normal";
+"session.pushData.pushPriority.critical" = "critical";
+
+"session.pushData.pushType.alert" = "alert";
+"session.pushData.pushType.background" = "background";
+"session.pushData.pushType.location" = "location";
+"session.pushData.pushType.voip" = "voip";
+"session.pushData.pushType.complication" = "complication";
+"session.pushData.pushType.fileprovider" = "fileprovider";
+"session.pushData.pushType.mdm" = "mdm";
+
+"session.pushData.environment.sandbox" = "sandbox";
+"session.pushData.environment.production" = "production";
+
+"pushPredefinedType.simple" = "simple";
+"pushPredefinedType.localized" = "localized";
+"pushPredefinedType.customData" = "customData";
+"pushPredefinedType.alert" = "alert";
+"pushPredefinedType.badge" = "badge";
+"pushPredefinedType.sound" = "sound";
+"pushPredefinedType.backgroundUpdate" = "backgroundUpdate";
+"pushPredefinedType.actions" = "actions";
+"pushPredefinedType.critical" = "critical";
+"pushPredefinedType.silent" = "silent";
+"pushPredefinedType.mutableContent" = "mutableContent";
+
+"session.historyView.noRequestsMesage" = "No messages yet...";
+
+"sessionState.HistoryTab.request" = "Request";
+"sessionState.HistoryTab.response" = "Response";
+"sessionState.HistoryTab.general" = "General";
+
+"historyView.general.endpoint" = "Endpoint";
+"historyView.general.deviceToken" = "Device token";
+"historyView.general.APNSId" = "APNS id";
+"historyView.general.status" = "Status";
+"historyView.general.status.success" = "Success";
+"historyView.general.status.fail" = "Fail";
+
+"historyView.request.endpoint" = "Endpoint";
+"historyView.request.url" = "URL";
+"historyView.request.bundleId" = "BundleId";
+"historyView.request.headers" = "Headers";
+"historyView.request.payload" = "Payload";
+"historyView.request.curl" = "Curl";
+
+"historyView.response.statusCode" = "Status code";
+"historyView.response.headers" = "Headers";
+"historyView.response.data" = "Data";
+"historyView.response.failure.reason" = "Failure reason";
+
+"session.certTab.expires" = "Expire";
