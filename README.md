@@ -61,9 +61,9 @@ Main features are:
 
 In progress:
 
-- [] Create reusable sp for APNS
-- [] Support generate terminal command
-- [] Live push preview
+- [ ] Create reusable sp for APNS
+- [ ] Support generate terminal command
+- [ ] Live push preview
 
 ## Quick guide
 
