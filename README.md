@@ -20,11 +20,12 @@
 
 OS X app for sending push with Apple Push Notification service (APNs) over HTTP/2 API.
 
-- [About](##About)
-- [Quick guide](##APNS-guide)
-- [License](##License)
-- [Thanks to](##Thanks-to)
-- [Contact](##contact)
+- [About](#about)
+- [Feature](#features)
+- [Quick guide](#quick-guide)
+- [License](#license)
+- [Thanks to](#thanks-to)
+- [Contact](#contact)
 
 ## About
 
