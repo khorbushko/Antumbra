@@ -220,6 +220,6 @@ More info about APNS [here](https://developer.apple.com/documentation/usernotifi
 
 ## Contact
 
-Have a question or an issue about `PushHandle`? Create an [issue](https://github.com/khorbushko/pushHandle/issues/new)!
+Have a question or an issue about `Antumbra`? Create an [issue](https://github.com/khorbushko/Antumbra/issues/new)!
 
 If you would like to contribute - just create a pull request.
