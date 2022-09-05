@@ -51,62 +51,38 @@ struct KeychainCertificate: Equatable, Hashable {
     return nil
   }
 
-  var validity: (notValidBefore: Date, notValidAfter:Date)? {
-    if let decodedString = String(
-      data: data as Data,
-      encoding: .ascii
-    ) {
-      var foundWWDRCA = false
-      var notValidBeforeDate = ""
-      var notValidAfterDate = ""
-
-      decodedString.enumerateLines { (line, _) in
-        if foundWWDRCA && (notValidBeforeDate.isEmpty || notValidAfterDate.isEmpty) {
-          let certificateData = line.prefix(13)
-          if notValidBeforeDate.isEmpty && !certificateData.isEmpty {
-            notValidBeforeDate = String(certificateData)
-          } else if notValidAfterDate.isEmpty && !certificateData.isEmpty {
-            notValidAfterDate = String(certificateData)
-          }
-        }
-
-        if line.contains("Apple Worldwide Developer Relations Certification Authority") {
-          foundWWDRCA = true
-        }
-      }
-
-      if let notValidBeforeDate = format(notValidBeforeDate),
-         let notValidAfterDate = format(notValidAfterDate) {
-
-        return (notValidBeforeDate, notValidAfterDate)
-      }
+  var expireAtDate: Date? {
+    let data = SecCertificateCopyValues(certificate, nil, nil)
+    let valueRaw = CFDictionaryGetValue(
+      data,
+      unsafeBitCast(kSecOIDX509V1ValidityNotAfter, to: UnsafeRawPointer.self)
+    )
+    let value = unsafeBitCast(
+      valueRaw,
+      to: NSDictionary.self
+    )
+    if let timeInterval = value["value"] as? TimeInterval {
+      let date = Date(timeIntervalSinceReferenceDate: timeInterval)
+      return date
     }
 
-    return nil
-  }
-
-  var expireAt: String? {
-    if let validity = validity {
-      let expireDate = validity.notValidAfter
-      let formatter = DateFormatter()
-      formatter.dateFormat = "dd MMM YYYY"
-      let value = formatter.string(from: expireDate)
-      return value
-    }
     return nil
   }
 
   var isAPNS: Bool {
     name?.contains("Push") == true
   }
+}
 
-  private static let certificateDateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyMMddHHmmssZ"
-    return formatter
-  }()
+extension KeychainCertificate {
+  var expireAtReadableString: String? {
+    if let expireAtDate = expireAtDate {
+      let formatter = DateFormatter()
+      formatter.dateFormat = "dd MMM YYYY"
+      let value = formatter.string(from: expireAtDate)
+      return value
 
-  private func format(_ date:String) -> Date? {
-    Self.certificateDateFormatter.date(from: date)
+    }
+    return nil
   }
 }

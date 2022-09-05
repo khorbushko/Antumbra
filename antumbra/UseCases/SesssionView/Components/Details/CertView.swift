@@ -35,7 +35,7 @@ struct CertView: View {
             .foregroundColor(Color.app.Text.primary.opacity(0.5))
             .adaptiveFont(.appRegular, size: 6)
 
-          Text(element.expireAt ?? .dash)
+          Text(element.expireAtReadableString ?? .dash)
             .foregroundColor(Color.app.Text.primary)
             .adaptiveFont(.appRegular, size: 6)
           Spacer(minLength: 0)
