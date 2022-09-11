@@ -19,7 +19,8 @@ extension SideBarEnvironment {
       selectedSessionFetcher: SessionStore.store.fetchSelectedSessionID,
       selectedSessionUpdater: SessionStore.store.updateSelectedSession(_:),
       addNewSession: SessionStore.store.addNewSession,
-      removeSession: SessionStore.store.removeSession
+      removeSession: SessionStore.store.removeSession,
+      copySession: SessionStore.store.copySession
     )
   }()
 
@@ -46,7 +47,8 @@ extension SideBarEnvironment {
       },
       selectedSessionUpdater: SessionStore.store.updateSelectedSession(_:),
       addNewSession: SessionStore.store.addNewSession,
-      removeSession: SessionStore.store.removeSession
+      removeSession: SessionStore.store.removeSession,
+      copySession: SessionStore.store.copySession
     )
   }()
 }

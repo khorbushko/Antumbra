@@ -16,6 +16,7 @@ protocol SessionStorage {
   func updateSelectedSession(_ sessionUUID: UUID) -> AnyPublisher<Void, Never>
   func removeSession(_ sessionUUID: UUID) -> AnyPublisher<[Session], Never>
   func addNewSession() -> AnyPublisher<[Session], Never>
+  func copySession(_ sessionUUID: UUID) -> AnyPublisher<[Session], Never>
 
   func save() -> AnyPublisher<Void, Never>
 }

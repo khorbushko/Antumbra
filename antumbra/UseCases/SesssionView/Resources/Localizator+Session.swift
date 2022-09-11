@@ -10,6 +10,7 @@ import Foundation
 extension Localizator {
   enum Session {
     static let defaultName = Localizator.sessionLV("session.details.defaultName")
+    static let copy = Localizator.sessionLV("session.details.copy")
 
     enum Details {
       enum Action {
@@ -20,6 +21,7 @@ extension Localizator {
         enum Auth {
           static let messageP8 = Localizator.sessionLV("session.details.pane.auth.message.p8")
           static let messageP12 = Localizator.sessionLV("session.details.pane.auth.message.p12")
+          static let messageP12NoPass = Localizator.sessionLV("session.details.pane.auth.p12.noPass")
 
           enum Action {
             static let selectFileP8 = Localizator.sessionLV("session.details.pane.auth.action.p8.selectFile")

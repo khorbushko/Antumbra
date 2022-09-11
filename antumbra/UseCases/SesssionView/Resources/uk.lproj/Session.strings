@@ -1,4 +1,5 @@
 "session.details.defaultName" = "сесія";
+"session.details.copy" = "копія";
 "session.details.action.send" = "Надіслати";
 "session.details.pane.auth.message.p8" = "або перетягніть файл-ключ *.p8 сюди";
 "session.details.pane.auth.message.p12" = "або перетягніть сертифікат *.p12 сюди";
@@ -9,6 +10,8 @@
 "session.sections.header" = "ЗАГОЛОВОК";
 "session.sections.body" = "ТІЛО";
 "session.sections.env" = "ОТОЧЕННЯ";
+
+"session.details.pane.auth.p12.noPass" = "Без паролю";
 
 "popoverView.message.obtain" = "Детальніше ";
 "popoverView.message.obtain.suffix" = "тут: ";

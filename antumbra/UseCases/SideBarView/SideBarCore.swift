@@ -30,6 +30,7 @@ enum SideBarAction {
 
   case onNewSessionCreate
   case onRemoveSession
+  case onCopySession
 }
 
 struct SideBarEnvironment {
@@ -41,6 +42,7 @@ struct SideBarEnvironment {
   let selectedSessionUpdater: (UUID) -> AnyPublisher<Void, Never>
   let addNewSession: () -> AnyPublisher<[Session], Never>
   let removeSession: (UUID) -> AnyPublisher<[Session], Never>
+  let copySession: (UUID) -> AnyPublisher<[Session], Never>
 
   init(
     workQueue: AnySchedulerOf<DispatchQueue>,
@@ -49,7 +51,8 @@ struct SideBarEnvironment {
     selectedSessionFetcher: @escaping () -> AnyPublisher<UUID, Never>,
     selectedSessionUpdater: @escaping (UUID) -> AnyPublisher<Void, Never>,
     addNewSession: @escaping () -> AnyPublisher<[Session], Never>,
-    removeSession: @escaping (UUID) -> AnyPublisher<[Session], Never>
+    removeSession: @escaping (UUID) -> AnyPublisher<[Session], Never>,
+    copySession: @escaping (UUID) -> AnyPublisher<[Session], Never>
   ) {
     self.workQueue = workQueue
     self.sessionEnvironments = sessionEnvironments
@@ -58,6 +61,7 @@ struct SideBarEnvironment {
     self.selectedSessionUpdater = selectedSessionUpdater
     self.addNewSession = addNewSession
     self.removeSession = removeSession
+    self.copySession = copySession
   }
 }
 
@@ -151,6 +155,22 @@ enum SideBarReducer {
                 .map(SideBarAction.onReceiveSession),
               Effect(value: .onSessionSelect(newSelection))
             )
+          }
+
+        case .onCopySession:
+          if let sessionIdToCopy = state.selectedSessionID {
+            return env.copySession(sessionIdToCopy)
+              .receive(on: env.workQueue)
+              .catchToEffect()
+              .map({ result -> [Session] in
+                switch result {
+                  case .success(let sessions):
+                    return sessions
+                  case .failure:
+                    return [Session]()
+                }
+              })
+              .map(SideBarAction.onReceiveSession)
           }
 
         case .onPopAction:

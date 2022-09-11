@@ -90,6 +90,16 @@ struct SideBarView: View {
         .padding(4)
 
         Spacer(minLength: 0)
+
+        Button {
+          viewStore.send(.onCopySession)
+        } label: {
+          Image.SideBar.copySession
+            .resizable()
+            .frame(width: 14, height: 16)
+        }
+        .buttonStyle(.plain)
+        .padding(4)
       }
       Spacer(minLength: 0)
     }

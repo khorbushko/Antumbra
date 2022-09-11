@@ -159,7 +159,22 @@ struct DetailsView: View {
       case .p12:
         p12DropArea(viewStore: viewStore)
         inputFor(.passphrase, viewStore: viewStore) {
+          CheckboxFieldView(
+            activeColor: Color.app.Hightlight.indicator,
+            inactiveColor: Color.app.Hightlight.indicator,
+            checkState: viewStore.binding(
+              get: \.skipPassphrase,
+              send: { SessionAction.onChange(.p12NoPassword($0)) }
+            )) {
+              Text(Localizator.Session.Details.Pane.Auth.messageP12NoPass)
+                .foregroundColor(Color.app.Hightlight.indicator)
+                .adaptiveFont(.appRegular, size: 8)
+            }
+
           textFiledInputFor(.passphrase, viewStore: viewStore)
+            .allowsHitTesting(!viewStore.skipPassphrase)
+            .opacity(viewStore.skipPassphrase ? 0.5 : 1)
+            .disabled(viewStore.skipPassphrase)
         }
 
       case .keychain:

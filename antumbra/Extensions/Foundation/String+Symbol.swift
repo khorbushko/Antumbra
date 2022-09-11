@@ -20,4 +20,8 @@ extension String {
   static var dash: String {
     "-"
   }
+
+  static var space: String {
+    " "
+  }
 }

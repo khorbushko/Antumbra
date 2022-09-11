@@ -32,6 +32,7 @@ struct SessionState: Equatable {
 
     case p8URL(URL?)
     case p12URL(URL?)
+    case p12NoPassword(Bool)
   }
 
   enum Sections: Codable {
@@ -82,6 +83,8 @@ struct SessionState: Equatable {
   var passphrase: String {
     session.pushData.info.p12Identity.passphrase ?? .empty
   }
+
+  var skipPassphrase: Bool = false
 
   // MARK: - p8
 
@@ -251,23 +254,23 @@ enum SessionReducer {
             case .sessionName(let name):
               state.session.name = name
             case .teamId(let teamID):
-              state.session.pushData.info.updateTeamId(teamID)
+              state.session.pushData.info.updateTeamId(teamID.nilIfEmpty)
             case .bundleId(let bundleID):
-              state.session.pushData.bundleId = bundleID
+              state.session.pushData.bundleId = bundleID.nilIfEmpty
             case .keyId(let keyID):
-              state.session.pushData.info.updateKeyId(keyID)
+              state.session.pushData.info.updateKeyId(keyID.nilIfEmpty)
             case .notificationId(let notificationID):
-              state.session.pushData.notificationId = notificationID
+              state.session.pushData.notificationId = notificationID.nilIfEmpty
             case .expiration(let expiration):
               state.session.pushData.expiration = "\(expiration)"
             case .priority(let priority):
               state.session.pushData.priority = priority
             case .collapseId(let collapseId):
-              state.session.pushData.collapseId = collapseId.isEmpty ? nil : collapseId
+              state.session.pushData.collapseId = collapseId.nilIfEmpty
             case .pushType(let pushType):
               state.session.pushData.kind = pushType
             case .apnsToken(let apnsToken):
-              state.session.pushData.apnsToken = apnsToken
+              state.session.pushData.apnsToken = apnsToken.nilIfEmpty
             case .pushEnvironment(let environment):
               state.session.pushData.environment = environment
               
@@ -277,13 +280,20 @@ enum SessionReducer {
               state.selectedPushPayload = payloadType
               state.session.pushData.pushMessage = payloadType.content
 
-            case .passphrase(let password):
-              state.session.pushData.info.updatePassphrase(password)
-
             case .p8URL(let url):
               state.session.pushData.info.updateFile(url, for: .p8)
             case .p12URL(let url):
               state.session.pushData.info.updateFile(url, for: .p12)
+
+            case .passphrase(let password):
+              if !state.skipPassphrase {
+                state.session.pushData.info.updatePassphrase(password.nilIfEmpty)
+              }
+            case .p12NoPassword(let isNoPassword):
+              state.skipPassphrase = isNoPassword
+              if isNoPassword {
+                state.session.pushData.info.updatePassphrase(nil)
+              }
 
             case .onSelectKeychainCert(let cert):
               state.session.pushData.info.updateCert(cert)

@@ -91,6 +91,20 @@ extension SessionStore: SessionStorage {
     return Just(sessions)
       .eraseToAnyPublisher()
   }
+
+  func copySession(_ sessionUUID: UUID) -> AnyPublisher<[Session], Never> {
+    if let session = sessions.first(where: { $0.id == sessionUUID }) {
+      if let newSession = DeepCopier.copy(of: session) {
+        newSession.id = .init()
+        newSession.name = newSession.name + .space + Localizator.Session.copy
+
+        sessions.append(newSession)
+      }
+    }
+
+    return Just(sessions)
+      .eraseToAnyPublisher()
+  }
 }
 
 extension SessionStore: TokenStorage {
@@ -152,5 +166,17 @@ extension SessionStore: TokenStorage {
       }
     }
     .eraseToAnyPublisher()
+  }
+}
+
+
+enum DeepCopier {
+  static func copy<T:Codable>(of object:T) -> T? {
+    do {
+      let json = try JSONEncoder().encode(object)
+      return try JSONDecoder().decode(T.self, from: json)
+    } catch {
+      return nil
+    }
   }
 }

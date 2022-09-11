@@ -1,4 +1,5 @@
 "session.details.defaultName" = "session";
+"session.details.copy" = "copy";
 "session.details.action.send" = "Send";
 "session.details.pane.auth.message.p8" = "or drag and drop *.p8 key here";
 "session.details.pane.auth.message.p12" = "or drag and drop *.p12 file here";
@@ -9,6 +10,8 @@
 "session.sections.header" = "HEADER";
 "session.sections.body" = "BODY";
 "session.sections.env" = "ENVIRONMENT";
+
+"session.details.pane.auth.p12.noPass" = "No password";
 
 "popoverView.message.obtain" = "You can obtains this info ";
 "popoverView.message.obtain.suffix" = "here: ";

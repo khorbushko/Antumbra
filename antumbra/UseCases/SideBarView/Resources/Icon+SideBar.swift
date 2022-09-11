@@ -12,5 +12,7 @@ extension Image {
   enum SideBar {
     static let addSession: Image = Image(systemName: "plus.circle")
     static let removeSession: Image = Image(systemName: "minus.circle")
+
+    static let copySession: Image = Image(systemName: "doc.on.doc")
   }
 }
